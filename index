@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mazda Spirit Lab</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+    .container { width: 90%; max-width: 1000px; margin: auto; }
+
+    .contact { padding: 60px 20px; background: white; text-align: center; }
+    .contact h2 { font-size: 2.4rem; margin-bottom: 40px; color: #0A2342; }
+    .contact-form { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
+    .contact-form input, .contact-form textarea {
+      padding: 14px; border-radius: 6px; border: 1px solid #ccc; font-size: 1rem; resize: none;
+    }
+    .contact-form input.invalid, .contact-form textarea.invalid { border-color: red; }
+    .error-message { color: red; font-size: 0.9rem; display: none; }
+    .contact-form button {
+      background-color: #FF4B3E; color: white; padding: 14px; font-size: 1rem;
+      border: none; border-radius: 6px; font-weight: 700; cursor: pointer;
+    }
+    .contact-form button:hover { background-color: #e03e33; }
+
+    .newsletter { padding: 60px 20px; background: #f9f9f9; text-align: center; }
+    .newsletter h2 { font-size: 2.2rem; margin-bottom: 30px; color: #0A2342; }
+    .newsletter form { max-width: 500px; margin: 0 auto; display: flex; gap: 10px; justify-content: center; }
+    .newsletter input[type="email"] {
+      flex: 1; padding: 12px; border-radius: 6px; border: 1px solid #ccc; font-size: 1rem;
+    }
+    .newsletter button {
+      background-color: #FF4B3E; color: white; border: none; border-radius: 6px;
+      padding: 12px 20px; font-size: 1rem; font-weight: 700; cursor: pointer;
+    }
+    .newsletter button:hover { background-color: #e03e33; }
+  </style>
+</head>
+<body>
+
+  <section class="contact fade-in-section">
+    <div class="container">
+      <h2>Contactez-nous</h2>
+      <form action="https://formspree.io/f/mrbkrjnd" method="POST" class="contact-form" id="contactForm">
+        <input type="text" name="name" placeholder="Votre nom" required />
+        <span class="error-message" id="nameError">Ce champ est requis.</span>
+
+        <input type="email" name="email" placeholder="Votre email" required />
+        <span class="error-message" id="emailError">Veuillez entrer un email valide.</span>
+
+        <textarea name="message" placeholder="Votre message" required></textarea>
+        <span class="error-message" id="messageError">Ce champ est requis.</span>
+
+        <button type="submit">Envoyer</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="newsletter fade-in-section">
+    <div class="container">
+      <h2>Rejoignez notre newsletter</h2>
+      <form action="https://example.us1.list-manage.com/subscribe/post?u=abc123&amp;id=xyz789" method="post" target="_blank" novalidate>
+        <input type="email" name="EMAIL" placeholder="Votre email" required>
+        <button type="submit">S'inscrire</button>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById('contactForm');
+    const nameField = form.elements['name'];
+    const emailField = form.elements['email'];
+    const messageField = form.elements['message'];
+
+    form.addEventListener('submit', function (e) {
+      let valid = true;
+      [nameField, emailField, messageField].forEach(field => field.classList.remove('invalid'));
+      ['nameError', 'emailError', 'messageError'].forEach(id => document.getElementById(id).style.display = 'none');
+
+      if (!nameField.value.trim()) {
+        valid = false;
+        nameField.classList.add('invalid');
+        document.getElementById('nameError').style.display = 'block';
+      }
+      const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+      if (!emailRegex.test(emailField.value.trim())) {
+        valid = false;
+        emailField.classList.add('invalid');
+        document.getElementById('emailError').style.display = 'block';
+      }
+      if (!messageField.value.trim()) {
+        valid = false;
+        messageField.classList.add('invalid');
+        document.getElementById('messageError').style.display = 'block';
+      }
+      if (!valid) e.preventDefault();
+    });
+  </script>
+</body>
+</html>
