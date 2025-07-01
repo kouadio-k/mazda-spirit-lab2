@@ -1,458 +1,257 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Mazda Spirit Lab - Passion et performance automobile">
-  <title>Mazda Spirit Lab</title>
-  <link rel="stylesheet" href="style.css">
-  <script defer src="script.js"></script>
-</head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mazda Spirit Lab - tout-en-un</title>
   <style>
+    /* CSS intégré */
     body {
-      margin: 0; padding: 0; font-family: Arial, sans-serif; line-height: 1.6;
-      padding-top: 60px; /* Pour menu fixe */
-      background-color: #fefefe;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7f7f7;
+      color: #222;
+      scroll-behavior: smooth;
     }
-    .container {
-      width: 90%;
-      max-width: 1000px;
-      margin: auto;
-    }
-
-    /* Navbar */
-    .navbar {
-      position: fixed;
-      width: 100%;
+    header, footer {
       background-color: #0A2342;
       color: white;
-      top: 0; left: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      padding: 1rem 2rem;
+      text-align: center;
     }
-    .navbar .container {
+    nav.navbar {
       display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 60px;
-      padding: 0 20px;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
     }
-    .logo {
-      font-weight: 700;
-      font-size: 1.5rem;
-      color: white;
-      text-decoration: none;
-    }
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-      margin: 0; padding: 0;
-    }
-    .nav-links li a {
+    nav.navbar a {
       color: white;
       text-decoration: none;
       font-weight: 600;
-      font-size: 1rem;
+      font-size: 1.1rem;
     }
-    .nav-links li a:hover {
+    nav.navbar a:hover {
       color: #FF4B3E;
     }
-    .menu-toggle {
-      display: none;
-      font-size: 2rem;
-      background: none;
-      border: none;
-      color: white;
-      cursor: pointer;
-    }
-    @media (max-width: 768px) {
-      .nav-links {
-        position: fixed;
-        top: 60px;
-        right: 0;
-        background-color: #0A2342;
-        flex-direction: column;
-        width: 200px;
-        height: calc(100% - 60px);
-        transform: translateX(100%);
-        transition: transform 0.3s ease-in-out;
-        padding-top: 20px;
-      }
-      .nav-links.active {
-        transform: translateX(0);
-      }
-      .menu-toggle {
-        display: block;
-      }
-    }
-
-    /* Contact Section */
-    .contact {
+    .section {
       padding: 60px 20px;
-      background: white;
       text-align: center;
     }
-    .contact h2 {
-      font-size: 2.4rem;
-      margin-bottom: 40px;
+    h1, h2 {
       color: #0A2342;
     }
-    .contact-form {
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .fade-in.appear {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    form {
       max-width: 600px;
-      margin: 0 auto;
+      margin: auto;
       display: flex;
       flex-direction: column;
-      gap: 15px;
-    }
-    .contact-form input,
-    .contact-form textarea {
-      padding: 14px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
-      resize: none;
-    }
-    .contact-form input.invalid,
-    .contact-form textarea.invalid {
-      border-color: red;
-    }
-    .error-message {
-      color: red;
-      font-size: 0.9rem;
-      display: none;
+      gap: 1rem;
       text-align: left;
-      margin-top: -12px;
-      margin-bottom: 8px;
     }
-    .contact-form button {
-      background-color: #FF4B3E;
-      color: white;
-      padding: 14px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 6px;
-      font-weight: 700;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
+    label {
+      font-weight: bold;
     }
-    .contact-form button:hover {
-      background-color: #e03e33;
-    }
-
-    /* Newsletter Section */
-    .newsletter {
-      padding: 60px 20px;
-      background: #f9f9f9;
-      text-align: center;
-    }
-    .newsletter h2 {
-      font-size: 2.2rem;
-      margin-bottom: 30px;
-      color: #0A2342;
-    }
-    .newsletter form {
-      max-width: 500px;
-      margin: 0 auto;
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-    }
-    .newsletter input[type="email"] {
-      flex: 1;
-      padding: 12px;
-      border-radius: 6px;
+    input, textarea {
+      padding: 0.75rem;
       border: 1px solid #ccc;
+      border-radius: 6px;
       font-size: 1rem;
+      width: 100%;
+      box-sizing: border-box;
     }
-    .newsletter button {
+    button {
+      padding: 0.75rem;
       background-color: #FF4B3E;
       color: white;
       border: none;
       border-radius: 6px;
-      padding: 12px 20px;
-      font-size: 1rem;
-      font-weight: 700;
+      font-weight: bold;
       cursor: pointer;
+      transition: background 0.3s;
     }
-    .newsletter button:hover {
-      background-color: #e03e33;
+    button:hover {
+      background-color: #e03a2f;
     }
-
-    /* À propos Section */
-    #apropos {
-      padding: 60px 20px;
-      background: #f0f4f8;
-      text-align: center;
+    footer .socials a {
+      color: white;
+      text-decoration: none;
+      margin: 0 0.5rem;
+      font-weight: 600;
     }
-    #apropos h2 {
-      color: #0A2342;
-      font-size: 2.4rem;
-      margin-bottom: 20px;
+    footer .socials a:hover {
+      color: #FF4B3E;
     }
-    #apropos p {
-      font-size: 1.15rem;
-      color: #333;
-      line-height: 1.6;
-      max-width: 900px;
-      margin: auto;
-    }
-
-    /* Galerie Section */
-    #galerie {
-      padding: 60px 20px;
-      background: #fff;
-      text-align: center;
-    }
-    #galerie h2 {
-      color: #0A2342;
-      font-size: 2.4rem;
-      margin-bottom: 20px;
-    }
+    /* Carousel basique */
     .carousel {
       position: relative;
+      max-width: 600px;
+      margin: 20px auto;
       overflow: hidden;
-      margin-top: 30px;
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .carousel-track {
-      display: flex;
-      transition: transform 0.5s ease;
-      will-change: transform;
-    }
-    .carousel-slide {
-      min-width: 100%;
-      user-select: none;
-    }
-    .carousel-slide img {
-      width: 100%;
-      height: auto;
       border-radius: 8px;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
-      display: block;
+      box-shadow: 0 4px 8px rgb(0 0 0 / 0.1);
     }
-    .carousel-button {
+    .carousel-images {
+      display: flex;
+      transition: transform 0.4s ease-in-out;
+    }
+    .carousel-images img {
+      width: 100%;
+      flex-shrink: 0;
+      object-fit: cover;
+    }
+    .prev, .next {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      background: rgba(10,35,66,0.7);
-      border: none;
+      background-color: rgba(10, 35, 66, 0.7);
       color: white;
-      font-size: 2rem;
-      padding: 8px 14px;
-      cursor: pointer;
-      border-radius: 50%;
-      user-select: none;
-      transition: background 0.3s ease;
-      z-index: 10;
-    }
-    .carousel-button:hover {
-      background: #FF4B3E;
-    }
-    .carousel-button.prev {
-      left: 10px;
-    }
-    .carousel-button.next {
-      right: 10px;
-    }
-    .carousel-dots {
-      text-align: center;
-      margin-top: 15px;
-    }
-    .carousel-dot {
-      display: inline-block;
-      width: 12px;
-      height: 12px;
-      background: #ccc;
-      border-radius: 50%;
-      margin: 0 6px;
-      cursor: pointer;
-      transition: background 0.3s ease;
       border: none;
+      font-size: 2rem;
+      padding: 0 12px;
+      cursor: pointer;
+      user-select: none;
+      border-radius: 4px;
     }
-    .carousel-dot.active {
-      background: #FF4B3E;
-    }
-    .carousel-dot:focus {
-      outline: 2px solid #FF4B3E;
-      outline-offset: 2px;
-    }
-    @media (max-width: 768px) {
-      .carousel-button {
-        font-size: 1.5rem;
-        padding: 6px 10px;
-      }
-    }
+    .prev { left: 10px; }
+    .next { right: 10px; }
   </style>
 </head>
 <body>
-
   <header>
     <nav class="navbar" role="navigation" aria-label="Menu principal">
-      <div class="container">
-        <a href="#accueil" class="logo">Mazda Spirit Lab</a>
-        <ul class="nav-links" role="menubar">
-          <li role="none"><a role="menuitem" href="#accueil">Accueil</a></li>
-          <li role="none"><a role="menuitem" href="#apropos">À propos</a></li>
-          <li role="none"><a role="menuitem" href="#galerie">Galerie</a></li>
-          <li role="none"><a role="menuitem" href="#contact">Contact</a></li>
-          <li role="none"><a role="menuitem" href="#newsletter">Newsletter</a></li>
-        </ul>
-        <button class="menu-toggle" aria-label="Basculer le menu">&#9776;</button>
-      </div>
+      <a href="#accueil">Accueil</a>
+      <a href="#apropos">À propos</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <section id="accueil" class="contact" tabindex="-1">
-    <div class="container">
-      <h2>Contactez-nous</h2>
-      <form action="https://formspree.io/f/mrbkrjnd" method="POST" class="contact-form" id="contactForm" novalidate>
-        <input type="text" name="name" placeholder="Votre nom" aria-describedby="nameError" required />
-        <span class="error-message" id="nameError" aria-live="polite">Ce champ est requis.</span>
+  <main>
+    <section id="accueil" class="section fade-in" tabindex="0">
+      <h1>Bienvenue chez Mazda Spirit Lab</h1>
+      <p>Un lieu dédié à la passion de l'automobile Mazda et au tuning de qualité.</p>
+    </section>
 
-        <input type="email" name="email" placeholder="Votre email" aria-describedby="emailError" required />
-        <span class="error-message" id="emailError" aria-live="polite">Veuillez entrer un email valide.</span>
+    <section id="apropos" class="section fade-in" tabindex="0">
+      <h2>À propos</h2>
+      <p>Nous sommes une communauté de passionnés qui valorisent la performance, le style et l’innovation Mazda.</p>
+    </section>
 
-        <textarea name="message" placeholder="Votre message" aria-describedby="messageError" required></textarea>
-        <span class="error-message" id="messageError" aria-live="polite">Ce champ est requis.</span>
+    <section id="galerie" class="section fade-in" tabindex="0">
+      <h2>Galerie</h2>
+      <div class="carousel" aria-label="Carrousel d'images Mazda">
+        <button class="prev" aria-label="Image précédente">&#10094;</button>
+        <div class="carousel-images">
+          <img src="images/mazda1.jpg" alt="Mazda RX-8 rouge" />
+          <img src="images/mazda2.jpg" alt="Mazda MX-5 noir mat" />
+          <img src="images/mazda3.jpg" alt="Mazda 3 customisée" />
+        </div>
+        <button class="next" aria-label="Image suivante">&#10095;</button>
+      </div>
+    </section>
 
+    <section id="contact" class="section fade-in" tabindex="0">
+      <h2>Contact</h2>
+      <form id="contactForm" action="https://formspree.io/f/mrbkrjnd" method="POST" novalidate>
+        <label for="nom">Nom</label>
+        <input type="text" id="nom" name="nom" required />
+        
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+        
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required></textarea>
+        
         <button type="submit">Envoyer</button>
       </form>
-    </div>
-  </section>
+      <p id="formMessage" aria-live="polite"></p>
+    </section>
+  </main>
 
-  <section id="apropos" tabindex="-1">
-    <div class="container">
-      <h2>À propos de Mazda Spirit Lab</h2>
-      <p>
-        Mazda Spirit Lab est une communauté passionnée dédiée à l’univers du tuning et de la personnalisation Mazda.  
-        Notre mission est de partager notre passion, nos conseils, et d’inspirer tous les amoureux de la marque à créer des véhicules uniques.  
-        Que vous soyez débutant ou expert, vous trouverez ici des ressources, des idées, et une ambiance conviviale.
-      </p>
+  <footer class="fade-in" tabindex="0">
+    <p>&copy; 2025 Mazda Spirit Lab. Tous droits réservés.</p>
+    <div class="socials" role="contentinfo">
+      <a href="#" target="_blank" rel="noopener">Instagram</a> |
+      <a href="#" target="_blank" rel="noopener">TikTok</a> |
+      <a href="#" target="_blank" rel="noopener">YouTube</a>
     </div>
-  </section>
-
-  <section id="galerie" tabindex="-1">
-    <div class="container">
-      <h2>Galerie Mazda Tuning</h2>
-      <div class="carousel" aria-label="Galerie d’images Mazda tuning">
-        <div class="carousel-track">
-          <div class="carousel-slide"><img src="https://cdn.pixabay.com/photo/2016/04/15/10/47/mazda-1333030_1280.jpg" alt="Mazda tuning 1" /></div>
-          <div class="carousel-slide"><img src="https://cdn.pixabay.com/photo/2019/02/05/18/08/car-3974731_1280.jpg" alt="Mazda tuning 2" /></div>
-          <div class="carousel-slide"><img src="https://cdn.pixabay.com/photo/2021/06/23/11/16/mazda-6357351_1280.jpg" alt="Mazda tuning 3" /></div>
-          <div class="carousel-slide"><img src="https://cdn.pixabay.com/photo/2021/05/16/11/54/mazda-6256423_1280.jpg" alt="Mazda tuning 4" /></div>
-        </div>
-        <button class="carousel-button prev" aria-label="Image précédente">&#10094;</button>
-        <button class="carousel-button next" aria-label="Image suivante">&#10095;</button>
-        <div class="carousel-dots" role="tablist" aria-label="Navigation des images"></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="newsletter" class="newsletter" tabindex="-1">
-    <div class="container">
-      <h2>Rejoignez notre newsletter</h2>
-      <form action="https://example.us1.list-manage.com/subscribe/post?u=abc123&amp;id=xyz789" method="post" target="_blank" novalidate>
-        <input type="email" name="EMAIL" placeholder="Votre email" required aria-label="Adresse email"/>
-        <button type="submit">S'inscrire</button>
-      </form>
-    </div>
-  </section>
+  </footer>
 
   <script>
-    // Menu toggle
-    const menuToggle = document.querySelector('.menu-toggle');
-    const navLinks = document.querySelector('.nav-links');
-
-    menuToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
+    // Animation au scroll (fade-in)
+    const faders = document.querySelectorAll('.fade-in');
+    const appearOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px"
+    };
+    const appearOnScroll = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('appear');
+        observer.unobserve(entry.target);
+      });
+    }, appearOptions);
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
     });
 
-    // Form validation
-    const form = document.getElementById('contactForm');
-    const nameField = form.elements['name'];
-    const emailField = form.elements['email'];
-    const messageField = form.elements['message'];
-
-    form.addEventListener('submit', function (e) {
-      let valid = true;
-
-      [nameField, emailField, messageField].forEach(field => field.classList.remove('invalid'));
-      ['nameError', 'emailError', 'messageError'].forEach(id => document.getElementById(id).style.display = 'none');
-
-      if (!nameField.value.trim()) {
-        valid = false;
-        nameField.classList.add('invalid');
-        document.getElementById('nameError').style.display = 'block';
-      }
-
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(emailField.value.trim())) {
-        valid = false;
-        emailField.classList.add('invalid');
-        document.getElementById('emailError').style.display = 'block';
-      }
-
-      if (!messageField.value.trim()) {
-        valid = false;
-        messageField.classList.add('invalid');
-        document.getElementById('messageError').style.display = 'block';
-      }
-
-      if (!valid) e.preventDefault();
-    });
-
-    // Carousel
-    const track = document.querySelector('.carousel-track');
-    const slides = Array.from(track.children);
-    const prevBtn = document.querySelector('.carousel-button.prev');
-    const nextBtn = document.querySelector('.carousel-button.next');
-    const dotsNav = document.querySelector('.carousel-dots');
-
+    // Carrousel simple
+    const carouselImages = document.querySelector('.carousel-images');
+    const images = document.querySelectorAll('.carousel-images img');
+    const prevBtn = document.querySelector('.prev');
+    const nextBtn = document.querySelector('.next');
     let currentIndex = 0;
 
-    slides.forEach((_, i) => {
-      const dot = document.createElement('button');
-      dot.classList.add('carousel-dot');
-      dot.setAttribute('role', 'tab');
-      dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
-      dot.setAttribute('aria-controls', `slide${i}`);
-      if(i === 0) dot.classList.add('active');
-      dot.addEventListener('click', () => {
-        goToSlide(i);
-      });
-      dotsNav.appendChild(dot);
-    });
-
-    const dots = Array.from(dotsNav.children);
-
-    function updateDots(index) {
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === index);
-        dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
-      });
+    function updateCarousel() {
+      const width = images[0].clientWidth;
+      carouselImages.style.transform = 'translateX(' + (-width * currentIndex) + 'px)';
     }
-
-    function goToSlide(index) {
-      track.style.transform = `translateX(-${index * 100}%)`;
-      currentIndex = index;
-      updateDots(index);
-    }
-
     prevBtn.addEventListener('click', () => {
-      let index = currentIndex - 1;
-      if(index < 0) index = slides.length -1;
-      goToSlide(index);
+      currentIndex = (currentIndex === 0) ? images.length - 1 : currentIndex - 1;
+      updateCarousel();
     });
-
     nextBtn.addEventListener('click', () => {
-      let index = currentIndex + 1;
-      if(index >= slides.length) index = 0;
-      goToSlide(index);
+      currentIndex = (currentIndex === images.length - 1) ? 0 : currentIndex + 1;
+      updateCarousel();
+    });
+    window.addEventListener('resize', updateCarousel);
+    updateCarousel();
+
+    // Validation intelligente formulaire
+    document.getElementById("contactForm").addEventListener("submit", function (e) {
+      const name = this.nom.value.trim();
+      const email = this.email.value.trim();
+      const message = this.message.value.trim();
+      const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+      const formMessage = document.getElementById('formMessage');
+
+      formMessage.textContent = '';
+      if (!name || !email || !message) {
+        e.preventDefault();
+        formMessage.textContent = "Merci de remplir tous les champs.";
+        formMessage.style.color = "red";
+        return;
+      }
+      if (!emailRegex.test(email)) {
+        e.preventDefault();
+        formMessage.textContent = "Merci d'entrer un email valide.";
+        formMessage.style.color = "red";
+        return;
+      }
+      formMessage.textContent = "Message envoyé, merci !";
+      formMessage.style.color = "green";
     });
   </script>
-
 </body>
 </html>
