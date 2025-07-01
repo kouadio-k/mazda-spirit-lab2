@@ -5,39 +5,194 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mazda Spirit Lab</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
-    .container { width: 90%; max-width: 1000px; margin: auto; }
-
-    .contact { padding: 60px 20px; background: white; text-align: center; }
-    .contact h2 { font-size: 2.4rem; margin-bottom: 40px; color: #0A2342; }
-    .contact-form { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
-    .contact-form input, .contact-form textarea {
-      padding: 14px; border-radius: 6px; border: 1px solid #ccc; font-size: 1rem; resize: none;
+    body {
+      margin: 0; padding: 0; font-family: Arial, sans-serif; line-height: 1.6;
+      padding-top: 60px; /* Pour éviter que le contenu soit caché sous le menu fixe */
     }
-    .contact-form input.invalid, .contact-form textarea.invalid { border-color: red; }
-    .error-message { color: red; font-size: 0.9rem; display: none; }
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      width: 100%;
+      background-color: #0A2342;
+      color: white;
+      top: 0; left: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .navbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+      padding: 0 20px;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: white;
+      text-decoration: none;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin: 0; padding: 0;
+    }
+    .nav-links li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .nav-links li a:hover {
+      color: #FF4B3E;
+    }
+    .menu-toggle {
+      display: none;
+      font-size: 2rem;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-links {
+        position: fixed;
+        top: 60px;
+        right: 0;
+        background-color: #0A2342;
+        flex-direction: column;
+        width: 200px;
+        height: calc(100% - 60px);
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        padding-top: 20px;
+      }
+      .nav-links.active {
+        transform: translateX(0);
+      }
+      .menu-toggle {
+        display: block;
+      }
+    }
+
+    /* Contact Section */
+    .contact {
+      padding: 60px 20px;
+      background: white;
+      text-align: center;
+    }
+    .contact h2 {
+      font-size: 2.4rem;
+      margin-bottom: 40px;
+      color: #0A2342;
+    }
+    .contact-form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      padding: 14px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      resize: none;
+    }
+    .contact-form input.invalid,
+    .contact-form textarea.invalid {
+      border-color: red;
+    }
+    .error-message {
+      color: red;
+      font-size: 0.9rem;
+      display: none;
+    }
     .contact-form button {
-      background-color: #FF4B3E; color: white; padding: 14px; font-size: 1rem;
-      border: none; border-radius: 6px; font-weight: 700; cursor: pointer;
+      background-color: #FF4B3E;
+      color: white;
+      padding: 14px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
     }
-    .contact-form button:hover { background-color: #e03e33; }
+    .contact-form button:hover {
+      background-color: #e03e33;
+    }
 
-    .newsletter { padding: 60px 20px; background: #f9f9f9; text-align: center; }
-    .newsletter h2 { font-size: 2.2rem; margin-bottom: 30px; color: #0A2342; }
-    .newsletter form { max-width: 500px; margin: 0 auto; display: flex; gap: 10px; justify-content: center; }
+    /* Newsletter Section */
+    .newsletter {
+      padding: 60px 20px;
+      background: #f9f9f9;
+      text-align: center;
+    }
+    .newsletter h2 {
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+      color: #0A2342;
+    }
+    .newsletter form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
     .newsletter input[type="email"] {
-      flex: 1; padding: 12px; border-radius: 6px; border: 1px solid #ccc; font-size: 1rem;
+      flex: 1;
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
     }
     .newsletter button {
-      background-color: #FF4B3E; color: white; border: none; border-radius: 6px;
-      padding: 12px 20px; font-size: 1rem; font-weight: 700; cursor: pointer;
+      background-color: #FF4B3E;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 12px 20px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
     }
-    .newsletter button:hover { background-color: #e03e33; }
+    .newsletter button:hover {
+      background-color: #e03e33;
+    }
   </style>
 </head>
 <body>
 
-  <section class="contact fade-in-section">
+  <header>
+    <nav class="navbar">
+      <div class="container">
+        <a href="#accueil" class="logo">Mazda Spirit Lab</a>
+        <ul class="nav-links">
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#apropos">À propos</a></li>
+          <li><a href="#galerie">Galerie</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#newsletter">Newsletter</a></li>
+        </ul>
+        <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+      </div>
+    </nav>
+  </header>
+
+  <section id="accueil" class="contact">
     <div class="container">
       <h2>Contactez-nous</h2>
       <form action="https://formspree.io/f/mrbkrjnd" method="POST" class="contact-form" id="contactForm">
@@ -55,7 +210,7 @@
     </div>
   </section>
 
-  <section class="newsletter fade-in-section">
+  <section id="newsletter" class="newsletter">
     <div class="container">
       <h2>Rejoignez notre newsletter</h2>
       <form action="https://example.us1.list-manage.com/subscribe/post?u=abc123&amp;id=xyz789" method="post" target="_blank" novalidate>
@@ -66,6 +221,13 @@
   </section>
 
   <script>
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
     const form = document.getElementById('contactForm');
     const nameField = form.elements['name'];
     const emailField = form.elements['email'];
@@ -73,27 +235,36 @@
 
     form.addEventListener('submit', function (e) {
       let valid = true;
+
+      // Reset errors
       [nameField, emailField, messageField].forEach(field => field.classList.remove('invalid'));
       ['nameError', 'emailError', 'messageError'].forEach(id => document.getElementById(id).style.display = 'none');
 
+      // Validate name
       if (!nameField.value.trim()) {
         valid = false;
         nameField.classList.add('invalid');
         document.getElementById('nameError').style.display = 'block';
       }
+
+      // Validate email
       const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
       if (!emailRegex.test(emailField.value.trim())) {
         valid = false;
         emailField.classList.add('invalid');
         document.getElementById('emailError').style.display = 'block';
       }
+
+      // Validate message
       if (!messageField.value.trim()) {
         valid = false;
         messageField.classList.add('invalid');
         document.getElementById('messageError').style.display = 'block';
       }
+
       if (!valid) e.preventDefault();
     });
   </script>
+
 </body>
 </html>
