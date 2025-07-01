@@ -7,7 +7,8 @@
   <style>
     body {
       margin: 0; padding: 0; font-family: Arial, sans-serif; line-height: 1.6;
-      padding-top: 60px; /* Pour éviter que le contenu soit caché sous le menu fixe */
+      padding-top: 60px; /* Pour menu fixe */
+      background-color: #fefefe;
     }
     .container {
       width: 90%;
@@ -61,8 +62,6 @@
       color: white;
       cursor: pointer;
     }
-
-    /* Responsive */
     @media (max-width: 768px) {
       .nav-links {
         position: fixed;
@@ -118,6 +117,9 @@
       color: red;
       font-size: 0.9rem;
       display: none;
+      text-align: left;
+      margin-top: -12px;
+      margin-bottom: 8px;
     }
     .contact-form button {
       background-color: #FF4B3E;
@@ -172,65 +174,191 @@
     .newsletter button:hover {
       background-color: #e03e33;
     }
+
+    /* À propos Section */
+    #apropos {
+      padding: 60px 20px;
+      background: #f0f4f8;
+      text-align: center;
+    }
+    #apropos h2 {
+      color: #0A2342;
+      font-size: 2.4rem;
+      margin-bottom: 20px;
+    }
+    #apropos p {
+      font-size: 1.15rem;
+      color: #333;
+      line-height: 1.6;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    /* Galerie Section */
+    #galerie {
+      padding: 60px 20px;
+      background: #fff;
+      text-align: center;
+    }
+    #galerie h2 {
+      color: #0A2342;
+      font-size: 2.4rem;
+      margin-bottom: 20px;
+    }
+    .carousel {
+      position: relative;
+      overflow: hidden;
+      margin-top: 30px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease;
+      will-change: transform;
+    }
+    .carousel-slide {
+      min-width: 100%;
+      user-select: none;
+    }
+    .carousel-slide img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+      display: block;
+    }
+    .carousel-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(10,35,66,0.7);
+      border: none;
+      color: white;
+      font-size: 2rem;
+      padding: 8px 14px;
+      cursor: pointer;
+      border-radius: 50%;
+      user-select: none;
+      transition: background 0.3s ease;
+      z-index: 10;
+    }
+    .carousel-button:hover {
+      background: #FF4B3E;
+    }
+    .carousel-button.prev {
+      left: 10px;
+    }
+    .carousel-button.next {
+      right: 10px;
+    }
+    .carousel-dots {
+      text-align: center;
+      margin-top: 15px;
+    }
+    .carousel-dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      background: #ccc;
+      border-radius: 50%;
+      margin: 0 6px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      border: none;
+    }
+    .carousel-dot.active {
+      background: #FF4B3E;
+    }
+    .carousel-dot:focus {
+      outline: 2px solid #FF4B3E;
+      outline-offset: 2px;
+    }
+    @media (max-width: 768px) {
+      .carousel-button {
+        font-size: 1.5rem;
+        padding: 6px 10px;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <header><section id="apropos" style="padding: 60px 20px; background: #f0f4f8; text-align: center;">
-  <div class="container" style="max-width: 900px; margin: auto;">
-    <h2 style="color: #0A2342; font-size: 2.4rem; margin-bottom: 20px;">À propos de Mazda Spirit Lab</h2>
-    <p style="font-size: 1.15rem; color: #333; line-height: 1.6;">
-      Mazda Spirit Lab est une communauté passionnée dédiée à l’univers du tuning et de la personnalisation Mazda.  
-      Notre mission est de partager notre passion, nos conseils, et d’inspirer tous les amoureux de la marque à créer des véhicules uniques.  
-      Que vous soyez débutant ou expert, vous trouverez ici des ressources, des idées, et une ambiance conviviale.
-    </p>
-  </div>
-</section>
-
-    <nav class="navbar">
+  <header>
+    <nav class="navbar" role="navigation" aria-label="Menu principal">
       <div class="container">
         <a href="#accueil" class="logo">Mazda Spirit Lab</a>
-        <ul class="nav-links">
-          <li><a href="#accueil">Accueil</a></li>
-          <li><a href="#apropos">À propos</a></li>
-          <li><a href="#galerie">Galerie</a></li>
-          <li><a href="#contact">Contact</a></li>
-          <li><a href="#newsletter">Newsletter</a></li>
+        <ul class="nav-links" role="menubar">
+          <li role="none"><a role="menuitem" href="#accueil">Accueil</a></li>
+          <li role="none"><a role="menuitem" href="#apropos">À propos</a></li>
+          <li role="none"><a role="menuitem" href="#galerie">Galerie</a></li>
+          <li role="none"><a role="menuitem" href="#contact">Contact</a></li>
+          <li role="none"><a role="menuitem" href="#newsletter">Newsletter</a></li>
         </ul>
-        <button class="menu-toggle" aria-label="Toggle menu">&#9776;</button>
+        <button class="menu-toggle" aria-label="Basculer le menu">&#9776;</button>
       </div>
     </nav>
   </header>
 
-  <section id="accueil" class="contact">
+  <section id="accueil" class="contact" tabindex="-1">
     <div class="container">
       <h2>Contactez-nous</h2>
-      <form action="https://formspree.io/f/mrbkrjnd" method="POST" class="contact-form" id="contactForm">
-        <input type="text" name="name" placeholder="Votre nom" required />
-        <span class="error-message" id="nameError">Ce champ est requis.</span>
+      <form action="https://formspree.io/f/mrbkrjnd" method="POST" class="contact-form" id="contactForm" novalidate>
+        <input type="text" name="name" placeholder="Votre nom" aria-describedby="nameError" required />
+        <span class="error-message" id="nameError" aria-live="polite">Ce champ est requis.</span>
 
-        <input type="email" name="email" placeholder="Votre email" required />
-        <span class="error-message" id="emailError">Veuillez entrer un email valide.</span>
+        <input type="email" name="email" placeholder="Votre email" aria-describedby="emailError" required />
+        <span class="error-message" id="emailError" aria-live="polite">Veuillez entrer un email valide.</span>
 
-        <textarea name="message" placeholder="Votre message" required></textarea>
-        <span class="error-message" id="messageError">Ce champ est requis.</span>
+        <textarea name="message" placeholder="Votre message" aria-describedby="messageError" required></textarea>
+        <span class="error-message" id="messageError" aria-live="polite">Ce champ est requis.</span>
 
         <button type="submit">Envoyer</button>
       </form>
     </div>
   </section>
 
-  <section id="newsletter" class="newsletter">
+  <section id="apropos" tabindex="-1">
+    <div class="container">
+      <h2>À propos de Mazda Spirit Lab</h2>
+      <p>
+        Mazda Spirit Lab est une communauté passionnée dédiée à l’univers du tuning et de la personnalisation Mazda.  
+        Notre mission est de partager notre passion, nos conseils, et d’inspirer tous les amoureux de la marque à créer des véhicules uniques.  
+        Que vous soyez débutant ou expert, vous trouverez ici des ressources, des idées, et une ambiance conviviale.
+      </p>
+    </div>
+  </section>
+
+  <section id="galerie" tabindex="-1">
+    <div class="container">
+      <h2>Galerie Mazda Tuning</h2>
+      <div class="carousel" aria-label="Galerie d’images Mazda tuning">
+        <div class="carousel-track">
+          <div class="carousel-slide"><img src="https://cdn.pixabay.com/photo/2016/04/15/10/47/mazda-1333030_1280.jpg" alt="Mazda tuning 1" /></div>
+          <div class="carousel-slide"><img src="https://cdn.pixabay.com/photo/2019/02/05/18/08/car-3974731_1280.jpg" alt="Mazda tuning 2" /></div>
+          <div class="carousel-slide"><img src="https://cdn.pixabay.com/photo/2021/06/23/11/16/mazda-6357351_1280.jpg" alt="Mazda tuning 3" /></div>
+          <div class="carousel-slide"><img src="https://cdn.pixabay.com/photo/2021/05/16/11/54/mazda-6256423_1280.jpg" alt="Mazda tuning 4" /></div>
+        </div>
+        <button class="carousel-button prev" aria-label="Image précédente">&#10094;</button>
+        <button class="carousel-button next" aria-label="Image suivante">&#10095;</button>
+        <div class="carousel-dots" role="tablist" aria-label="Navigation des images"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="newsletter" class="newsletter" tabindex="-1">
     <div class="container">
       <h2>Rejoignez notre newsletter</h2>
       <form action="https://example.us1.list-manage.com/subscribe/post?u=abc123&amp;id=xyz789" method="post" target="_blank" novalidate>
-        <input type="email" name="EMAIL" placeholder="Votre email" required>
+        <input type="email" name="EMAIL" placeholder="Votre email" required aria-label="Adresse email"/>
         <button type="submit">S'inscrire</button>
       </form>
     </div>
   </section>
 
   <script>
+    // Menu toggle
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
 
@@ -238,6 +366,7 @@
       navLinks.classList.toggle('active');
     });
 
+    // Form validation
     const form = document.getElementById('contactForm');
     const nameField = form.elements['name'];
     const emailField = form.elements['email'];
@@ -246,26 +375,22 @@
     form.addEventListener('submit', function (e) {
       let valid = true;
 
-      // Reset errors
       [nameField, emailField, messageField].forEach(field => field.classList.remove('invalid'));
       ['nameError', 'emailError', 'messageError'].forEach(id => document.getElementById(id).style.display = 'none');
 
-      // Validate name
       if (!nameField.value.trim()) {
         valid = false;
         nameField.classList.add('invalid');
         document.getElementById('nameError').style.display = 'block';
       }
 
-      // Validate email
-      const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(emailField.value.trim())) {
         valid = false;
         emailField.classList.add('invalid');
         document.getElementById('emailError').style.display = 'block';
       }
 
-      // Validate message
       if (!messageField.value.trim()) {
         valid = false;
         messageField.classList.add('invalid');
@@ -273,6 +398,55 @@
       }
 
       if (!valid) e.preventDefault();
+    });
+
+    // Carousel
+    const track = document.querySelector('.carousel-track');
+    const slides = Array.from(track.children);
+    const prevBtn = document.querySelector('.carousel-button.prev');
+    const nextBtn = document.querySelector('.carousel-button.next');
+    const dotsNav = document.querySelector('.carousel-dots');
+
+    let currentIndex = 0;
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.classList.add('carousel-dot');
+      dot.setAttribute('role', 'tab');
+      dot.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+      dot.setAttribute('aria-controls', `slide${i}`);
+      if(i === 0) dot.classList.add('active');
+      dot.addEventListener('click', () => {
+        goToSlide(i);
+      });
+      dotsNav.appendChild(dot);
+    });
+
+    const dots = Array.from(dotsNav.children);
+
+    function updateDots(index) {
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === index);
+        dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
+      });
+    }
+
+    function goToSlide(index) {
+      track.style.transform = `translateX(-${index * 100}%)`;
+      currentIndex = index;
+      updateDots(index);
+    }
+
+    prevBtn.addEventListener('click', () => {
+      let index = currentIndex - 1;
+      if(index < 0) index = slides.length -1;
+      goToSlide(index);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      let index = currentIndex + 1;
+      if(index >= slides.length) index = 0;
+      goToSlide(index);
     });
   </script>
 
