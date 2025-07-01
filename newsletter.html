@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mazda Spirit Lab</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+    .container {
+      width: 90%;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .newsletter {
+      padding: 60px 20px;
+      background: #f9f9f9;
+      text-align: center;
+    }
+    .newsletter h2 {
+      font-size: 2.2rem;
+      margin-bottom: 30px;
+      color: #0A2342;
+    }
+    .newsletter form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+    .newsletter input[type="email"] {
+      flex: 1;
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    .newsletter button {
+      background-color: #FF4B3E;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 12px 20px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .newsletter button:hover {
+      background-color: #e03e33;
+    }
+  </style>
+</head>
+<body>
+
+  <section class="newsletter fade-in-section">
+    <div class="container">
+      <h2>Rejoignez notre newsletter</h2>
+      <form action="https://example.us1.list-manage.com/subscribe/post?u=abc123&amp;id=xyz789" method="post" target="_blank" novalidate>
+        <input type="email" name="EMAIL" placeholder="Votre email" required>
+        <button type="submit">S'inscrire</button>
+      </form>
+    </div>
+  </section>
+
+</body>
+</html>
