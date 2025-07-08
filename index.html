@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mazda Spirit Lab - tout-en-un avec newsletter</title>
+  <title>Mazda Spirit Lab</title>
   <style>
     body {
       margin: 0;
@@ -23,7 +24,6 @@
       justify-content: center;
       gap: 30px;
       flex-wrap: wrap;
-      margin-bottom: 1rem;
     }
     nav.navbar a {
       color: white;
@@ -41,6 +41,40 @@
     h1, h2 {
       color: #0A2342;
     }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+      padding: 20px;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 8px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80%;
+    }
+
     form {
       max-width: 600px;
       margin: auto;
@@ -107,7 +141,14 @@
 
     <section id="galerie" class="section">
       <h2>Galerie</h2>
-      <p>[Galerie d'images en construction]</p>
+      <div class="gallery">
+        <img src="https://source.unsplash.com/600x400/?mazda,car" alt="Mazda 1" />
+        <img src="https://source.unsplash.com/601x400/?mazda,sportscar" alt="Mazda 2" />
+        <img src="https://source.unsplash.com/602x400/?mazda,roadster" alt="Mazda 3" />
+        <img src="https://source.unsplash.com/603x400/?mazda,vehicle" alt="Mazda 4" />
+        <img src="https://source.unsplash.com/604x400/?mazda,tuning" alt="Mazda 5" />
+        <img src="https://source.unsplash.com/605x400/?mazda,car" alt="Mazda 6" />
+      </div>
     </section>
 
     <section id="contact" class="section">
@@ -124,7 +165,6 @@
         
         <button type="submit">Envoyer</button>
       </form>
-      <p id="formMessage" aria-live="polite"></p>
     </section>
   </main>
 
@@ -135,19 +175,24 @@
       <a href="#">TikTok</a> |
       <a href="#">YouTube</a>
     </div>
-
-    <!-- Formulaire de newsletter -->
-    <div style="margin-top: 2rem;">
-      <form action="https://example.us1.list-manage.com/subscribe/post?u=XXXX&amp;id=YYYY" method="post" target="_blank" novalidate>
-        <label for="newsletter-email" style="display:block; font-weight:bold;">S'inscrire à la newsletter</label>
-        <input type="email" id="newsletter-email" name="EMAIL" placeholder="Votre email" required
-          style="padding: 0.5rem; border-radius: 4px; border: 1px solid #ccc; width: 100%; max-width: 300px; margin-bottom: 0.5rem;">
-        <button type="submit"
-          style="padding: 0.5rem 1rem; background-color:#FF4B3E; color: white; border: none; border-radius: 4px; cursor:pointer;">
-          S’abonner
-        </button>
-      </form>
-    </div>
   </footer>
+
+  <div class="lightbox" id="lightbox">
+    <img src="" alt="Agrandissement">
+  </div>
+  <script>
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = lightbox.querySelector('img');
+    document.querySelectorAll('.gallery img').forEach(img => {
+      img.addEventListener('click', () => {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+      });
+    });
+    lightbox.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+  </script>
 </body>
 </html>
