@@ -1,11 +1,12 @@
 
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mazda Spirit Lab</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Mazda Spirit Lab</title>
+<style>
     body {
       margin: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -116,71 +117,93 @@
     footer .socials a:hover {
       color: #FF4B3E;
     }
-  </style>
+  
+  .filtre-galerie {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .filter-btn {
+    background: #004a99;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: #0078ff;
+  }
+  .gallery-img {
+    transition: all 0.3s ease;
+  }
+  .gallery-img.hidden {
+    display: none;
+  }
+</style>
 </head>
 <body>
-  <header>
-    <nav class="navbar">
-      <a href="#accueil">Accueil</a>
-      <a href="#apropos">À propos</a>
-      <a href="#galerie">Galerie</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+<header>
+<nav class="navbar">
+<a href="#accueil">Accueil</a>
+<a href="#apropos">À propos</a>
+<a href="#galerie">Galerie</a>
+<a href="#contact">Contact</a>
+</nav>
+</header>
+<main>
+<section class="section" id="accueil">
+<h1>Bienvenue chez Mazda Spirit Lab</h1>
+<p>Un lieu dédié à la passion de l'automobile Mazda et au tuning de qualité.</p>
+</section>
+<section class="section" id="apropos">
+<h2>À propos</h2>
+<p>Nous sommes une communauté de passionnés qui valorisent la performance, le style et l’innovation Mazda.</p>
+</section>
 
-  <main>
-    <section id="accueil" class="section">
-      <h1>Bienvenue chez Mazda Spirit Lab</h1>
-      <p>Un lieu dédié à la passion de l'automobile Mazda et au tuning de qualité.</p>
-    </section>
-
-    <section id="apropos" class="section">
-      <h2>À propos</h2>
-      <p>Nous sommes une communauté de passionnés qui valorisent la performance, le style et l’innovation Mazda.</p>
-    </section>
-
-    <section id="galerie" class="section">
-      <h2>Galerie</h2>
-      <div class="gallery">
-        <img src="https://source.unsplash.com/600x400/?mazda,car" alt="Mazda 1" />
-        <img src="https://source.unsplash.com/601x400/?mazda,sportscar" alt="Mazda 2" />
-        <img src="https://source.unsplash.com/602x400/?mazda,roadster" alt="Mazda 3" />
-        <img src="https://source.unsplash.com/603x400/?mazda,vehicle" alt="Mazda 4" />
-        <img src="https://source.unsplash.com/604x400/?mazda,tuning" alt="Mazda 5" />
-        <img src="https://source.unsplash.com/605x400/?mazda,car" alt="Mazda 6" />
-      </div>
-    </section>
-
-    <section id="contact" class="section">
-      <h2>Contact</h2>
-      <form id="contactForm" action="https://formspree.io/f/mrbkrjnd" method="POST" novalidate>
-        <label for="nom">Nom</label>
-        <input type="text" id="nom" name="nom" required />
-        
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required />
-        
-        <label for="message">Message</label>
-        <textarea id="message" name="message" required></textarea>
-        
-        <button type="submit">Envoyer</button>
-      </form>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 Mazda Spirit Lab. Tous droits réservés.</p>
-    <div class="socials">
-      <a href="#">Instagram</a> |
+<div class="filtre-galerie">
+<button class="filter-btn active" data-filter="all">Tous</button>
+<button class="filter-btn" data-filter="rx7">RX-7</button>
+<button class="filter-btn" data-filter="mx5">MX-5</button>
+<button class="filter-btn" data-filter="tuning">Tuning</button>
+</div>
+<section class="section" id="galerie">
+<h2>Galerie</h2>
+<div class="gallery">
+<img alt="Mazda 1" class="gallery-img" data-category="rx7" src="https://source.unsplash.com/600x400/?mazda,car"/>
+<img alt="Mazda 2" class="gallery-img" data-category="mx5" src="https://source.unsplash.com/601x400/?mazda,sportscar"/>
+<img alt="Mazda 3" class="gallery-img" data-category="tuning" src="https://source.unsplash.com/602x400/?mazda,roadster"/>
+<img alt="Mazda 4" class="gallery-img" data-category="rx7" src="https://source.unsplash.com/603x400/?mazda,vehicle"/>
+<img alt="Mazda 5" class="gallery-img" data-category="mx5" src="https://source.unsplash.com/604x400/?mazda,tuning"/>
+<img alt="Mazda 6" class="gallery-img" data-category="tuning" src="https://source.unsplash.com/605x400/?mazda,car"/>
+</div>
+</section>
+<section class="section" id="contact">
+<h2>Contact</h2>
+<form action="https://formspree.io/f/mrbkrjnd" id="contactForm" method="POST" novalidate="">
+<label for="nom">Nom</label>
+<input id="nom" name="nom" required="" type="text"/>
+<label for="email">Email</label>
+<input id="email" name="email" required="" type="email"/>
+<label for="message">Message</label>
+<textarea id="message" name="message" required=""></textarea>
+<button type="submit">Envoyer</button>
+</form>
+</section>
+</main>
+<footer>
+<p>© 2025 Mazda Spirit Lab. Tous droits réservés.</p>
+<div class="socials">
+<a href="#">Instagram</a> |
       <a href="#">TikTok</a> |
       <a href="#">YouTube</a>
-    </div>
-  </footer>
-
-  <div class="lightbox" id="lightbox">
-    <img src="" alt="Agrandissement">
-  </div>
-  <script>
+</div>
+</footer>
+<div class="lightbox" id="lightbox">
+<img alt="Agrandissement" src=""/>
+</div>
+<script>
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = lightbox.querySelector('img');
     document.querySelectorAll('.gallery img').forEach(img => {
@@ -194,5 +217,28 @@
       lightbox.style.display = 'none';
     });
   </script>
+
+<script>
+  const filterButtons = document.querySelectorAll(".filter-btn");
+  const images = document.querySelectorAll(".gallery-img");
+
+  filterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      filterButtons.forEach(btn => btn.classList.remove("active"));
+      button.classList.add("active");
+
+      const filter = button.getAttribute("data-filter");
+
+      images.forEach(img => {
+        const category = img.getAttribute("data-category");
+        if (filter === "all" || filter === category) {
+          img.classList.remove("hidden");
+        } else {
+          img.classList.add("hidden");
+        }
+      });
+    });
+  });
+</script>
 </body>
 </html>
